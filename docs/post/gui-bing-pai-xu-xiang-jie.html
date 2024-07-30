@@ -97,11 +97,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>我们定义两个“箭头”<code class="notranslate">i</code>和<code class="notranslate">j</code>分别指向两个子序列的开头，并且定义一个“储物间”数组<code class="notranslate">t</code>，用来存储排好的数字，就像这样：<br>
 <a href="https://imgse.com/i/pkLNwB4" rel="nofollow"><img src="https://camo.githubusercontent.com/21d9e40074768c5b416217426a41cf202a2f991b666e6921090c0dca882a94fe/68747470733a2f2f7332312e617831782e636f6d2f323032342f30372f32392f706b4c4e7742342e706e67" alt="pkLNwB4.png" data-canonical-src="https://s21.ax1x.com/2024/07/29/pkLNwB4.png" style="max-width: 100%;"></a><br>
 然后我们比较两个箭头指向的数字，看哪个小，就让哪个进入“储物间”，并且把那个箭头向前推进。<br>
-比如上面这幅图， $1 &amp;lt; 4$ ，所以就变成这样：<br>
+比如上面这幅图， $1 \textless 4$ ，所以就变成这样：<br>
 <a href="https://imgse.com/i/pkLN69x" rel="nofollow"><img src="https://camo.githubusercontent.com/6b8f1d9b81eb007e2a073a9ce1820270a34b5fdb8f5db7ab6fa21b7ab8dad88f/68747470733a2f2f7332312e617831782e636f6d2f323032342f30372f32392f706b4c4e3639782e706e67" alt="pkLN69x.png" data-canonical-src="https://s21.ax1x.com/2024/07/29/pkLN69x.png" style="max-width: 100%;"></a><br>
-接下来， $2 &amp;lt; 4$ ，所以让i指向的数进入储物间并向前推进。<br>
+接下来， $2 \textless 4$ ，所以让i指向的数进入储物间并向前推进。<br>
 <a href="https://imgse.com/i/pkLNggK" rel="nofollow"><img src="https://camo.githubusercontent.com/3aa665ce5fbf7ca40a7d4db125a9bb62f2dea435be414b2346626e30885482d3/68747470733a2f2f7332312e617831782e636f6d2f323032342f30372f32392f706b4c4e67674b2e706e67" alt="pkLNggK.png" data-canonical-src="https://s21.ax1x.com/2024/07/29/pkLNggK.png" style="max-width: 100%;"></a><br>
-接下来继续，注意！ $7 &amp;gt; 4$ ，所以要让4进入储物间，推进的则是<code class="notranslate">j</code>。<br>
+接下来继续，注意！ $7 \textgreater 4$ ，所以要让4进入储物间，推进的则是<code class="notranslate">j</code>。<br>
 <a href="https://imgse.com/i/pkLNfDe" rel="nofollow"><img src="https://camo.githubusercontent.com/f3e115c78a49d98b68af45239084e4b63324cff877975e1a08a516e7fc5db248/68747470733a2f2f7332312e617831782e636f6d2f323032342f30372f32392f706b4c4e6644652e706e67" alt="pkLNfDe.png" data-canonical-src="https://s21.ax1x.com/2024/07/29/pkLNfDe.png" style="max-width: 100%;"></a><br>
 以此类推，请你手动模拟一下后面的部分，如果没有错，模拟完应该是这样的：<br>
 <a href="https://imgse.com/i/pkLNIUA" rel="nofollow"><img src="https://camo.githubusercontent.com/e74a5660428971c9931ac999029c42b5a0eadf4e9862a4921b6d2e93d1fb8b0d/68747470733a2f2f7332312e617831782e636f6d2f323032342f30372f32392f706b4c4e4955412e706e67" alt="pkLNIUA.png" data-canonical-src="https://s21.ax1x.com/2024/07/29/pkLNIUA.png" style="max-width: 100%;"></a><br>
@@ -125,8 +125,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }</pre></div>
 <h1>拓展应用：求逆序对个数</h1>
 <h2>原理</h2>
-<p>逆序对，指数列中的两个数 $a_i &amp;gt; a_j$ 并且 $i &amp;lt; j$ 。利用归并排序我们可以以 $\mathcal{O}(n \log(n))$ 的时间复杂度求序列中的逆序对个数。<br>
-归并排序在合并过程中，<code class="notranslate">i</code>永远小于<code class="notranslate">j</code>，这时，如果 $a_i &amp;gt; a_j$ ，说明出现了一组逆序对，而且因为被合并的两个序列是有序的，所以<br>
+<p>逆序对，指数列中的两个数 $a_i \textgreater a_j$ 并且 $i \textless j$ 。利用归并排序我们可以以 $\mathcal{O}(n \log(n))$ 的时间复杂度求序列中的逆序对个数。<br>
+归并排序在合并过程中，<code class="notranslate">i</code>永远小于<code class="notranslate">j</code>，这时，如果 $a_i \textgreater a_j$ ，说明出现了一组逆序对，而且因为被合并的两个序列是有序的，所以<br>
 $a_i$ 后面的数也一定大于 $a_j$ ，因此<code class="notranslate">ans += mid - i + 1</code>，具体代码如下：</p>
 <h2>代码实现</h2>
 <div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> a是原序列，t是储物间。</span>
