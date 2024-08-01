@@ -1,0 +1,12 @@
+on: [push] # 在push的时候执行
+
+jobs:
+  add_sidebar_job:
+    runs-on: ubuntu-latest
+    name: job to add _sidebar.md
+    steps:
+      - uses: actions/checkout@v4                     # 拉取代码
+      - uses: if-nil/docsify-file-catalog-action@main # 使用action生成_sidebar.md文件并推送到仓库内
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}   # GITHUB_TOKEN 需要有写权限
+          # include: '.*'
