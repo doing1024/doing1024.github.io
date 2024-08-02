@@ -9,4 +9,4 @@ jobs:
       - uses: if-nil/docsify-file-catalog-action@main # 使用action生成_sidebar.md文件并推送到仓库内
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}   # GITHUB_TOKEN 需要有写权限
-          # include: '.*'
+          include: '[^_]*.md'
