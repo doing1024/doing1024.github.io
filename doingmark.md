@@ -1,4 +1,4 @@
-JustMark，是我开发的一款在线的Markdown编辑器。
+DoingMark，是我开发的一款在线的Markdown编辑器。
 
 # 为什么采用分屏而不是WYSIWYG（所见即所得）
 首先，自己实力不够的确是一方面。
@@ -14,7 +14,7 @@ Markdown本义是什么？格式和内容分离，若是采用 WYSIWYG （所见
 * 将数据保存到浏览器，下次继续编辑
 
 # INFO
-* github仓库：[justmark](https://github.com/doing1024/justmark)
-* 在线体验：[JustMark](https://justmark.doing1024.us.kg)
+* github仓库：[doing1024/doingmark](https://github.com/doing1024/doingmark)
+* 在线体验：[DoingMark](https://doingmark.doing1024.us.kg)
 * 求STAR⭐🙏~
 

@@ -12,7 +12,7 @@
 # 关于我
 
 ## 📜 项目
-+ [JustMark: 简单免费的网页端Markdown编辑器](/justmark.md)
++ [DoingMark: 简单免费的网页端Markdown编辑器](/doingmark.md)
 
 ## 介绍
 我是doing，喜欢coding💻，有时writing📝，最喜欢playing~
