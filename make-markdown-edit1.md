@@ -140,4 +140,4 @@ editor.on('change', (codemirrorIns, codemirrorObj) => { // 改变时的事件
 ```
 现在你就可以达到文章开头时的效果图啦！自己运行试试吧！
 
-更多效果和功能尽请期待下一篇：[]()
+更多效果和功能尽请期待下一篇：[从零开始带你做Markdown编辑器（二）：深色主题](./make-markdown-edit2.md)
