@@ -2,10 +2,10 @@
 ## 📄算法笔记
 + [RMQ救星：ST表](./st-table.md)
 - [归并排序详解](./merge-sort.md)
++ [找出孤傲的数：一文讲清楚C++筛法](./shaifa.md)
 
 ## 从零开始
 + [从零开始带你做Markdown编辑器（一）：编辑和显示](./make-markdown-edit1.md)
-+ [找出孤傲的数：一文讲清楚C++筛法](./shaifa.md)
 
 ## ⛏️ 施工中
 - [从零开始带你做Markdown编辑器（二）：深色主题](./make-markdown-edit2.md)
