@@ -8,17 +8,11 @@
 
 - [找出孤傲的数：一文讲清楚C++筛法](./shaifa.md)
 
-## 0️ 从零开始
+## 随性开发
 
-- [从零开始带你做Markdown编辑器（一）：编辑和显示](./make-markdown-edit1.md)
+- [开发简易Markdown编辑器](./make-markdown-edit.md)
 
-## python demo
-
-- [爬取百度热搜：python爬虫入门](./python-baidu-top.md)
-
-## ⛏️ 施工中
-
-- [从零开始带你做Markdown编辑器（二）：深色主题](./make-markdown-edit2.md)
+* [爬取百度热搜：python爬虫入门](./python-baidu-top.md)
 
 # ℹ️ 关于我
 
