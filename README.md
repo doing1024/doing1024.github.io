@@ -1,5 +1,8 @@
 # 文章列表
 
+## 🔥MojoStarter
+- [#001: Mojo介绍与Hello,World](./mojo1.md)
+
 ## 📄算法笔记
 
 - [RMQ救星：ST表](./st-table.md)
