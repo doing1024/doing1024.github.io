@@ -5,6 +5,7 @@
 - [#001: Mojo介绍与Hello,World](./mojo/1.md)
 
 ## 📄算法笔记
+
 - [RMQ救星：ST表](./algo/st-table.md)
 
 * [归并排序详解](./algo/merge-sort.md)
@@ -16,6 +17,10 @@
 - [开发简易Markdown编辑器](./projects/make-markdown-edit.md)
 
 * [爬取百度热搜：python爬虫入门](./projects/python-baidu-top.md)
+
+## Linux
+
+- [为什么要用Linux](./linux/why.md)
 
 # ℹ️ 关于我
 
