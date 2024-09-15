@@ -1,5 +1,7 @@
 # 文章列表
 
+注：有的内容为pdf格式，原因是我使用orgmode编写，不方便导出markdown.
+
 ## 🔥MojoStarter
 
 - [#001: Mojo介绍与Hello,World](./mojo/1.md)
@@ -21,6 +23,10 @@
 ## Linux
 
 - [为什么要用Linux](./linux/why.md)
+
+## 其他
+
+- [求长方形面积 —— 小升初数学题](./other/problem.pdf)
 
 # ℹ️ 关于我
 
