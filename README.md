@@ -26,7 +26,7 @@
 
 ## 其他
 
-- [求长方形面积 —— 小升初数学题](./other/problem.pdf)
+- [求长方形面积 —— 小升初数学题](https://doing1024.us.kg/other/problem.pdf)
 
 # ℹ️ 关于我
 
