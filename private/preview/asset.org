@@ -1,9 +1,0 @@
-如果你能访问到这里，那么说明肯定是我告诉你的:)。下面请欣赏：
-
-* 资源清单
-** 电子书
-+ [[https://doing1024.us.kg/private/preview/ch/book.pdf][语文课本]]
-+ [[https://doing1024.us.kg/private/preview/ml/book.pdf][道法课本]]
-** 道法预习
-*** 第一课
-+ [[https://doing1024.us.kg/private/priview/ml/1/answer.pdf][答案]]
