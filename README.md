@@ -1,11 +1,5 @@
 # 文章列表
 
-注：有的内容为pdf格式，原因是我使用orgmode编写，不方便导出markdown.
-
-## 🔥MojoStarter
-
-- [#001: Mojo介绍与Hello,World](./mojo/1.md)
-
 ## 📄算法笔记
 
 - [RMQ救星：ST表](./algo/st-table.md)
@@ -26,8 +20,8 @@
 
 ## 其他
 
-- [求长方形面积 —— 小升初数学题](https://doing1024.us.kg/other/problem.pdf)
-
+- [求长方形面积 —— 小升初数学题](./other/problem.md)
+- [orgmode语法](./other/orgmode.md)
 # ℹ️ 关于我
 
 ## 📜项目
