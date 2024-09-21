@@ -1,2 +1,0 @@
-#+MACRO: bcs \(\because\)
-#+MACRO: tf \(\therefore\)

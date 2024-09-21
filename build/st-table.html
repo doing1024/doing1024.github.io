@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>doing的小破屋</title>
+        <link rel="stylesheet" href="https://unpkg.com/github-markdown-css@5.6.1/github-markdown-light.css">
+    </head>
+    <body style="background-color: hsl(204,60%,96%);">
+        <div style="background-color: hsl(204, 60%, 96%);position: fixed;width: 100vw;height: 10vh;left: 0;top: 0;z-index:999;"><a href="https://doing1024.us.kg" style="text-decoration: none;">
+            <h1 style="color: hsl(204, 90%, 45%);">doing的小破屋</h1></a></div>
+        <div style="background-color: hsl(204, 60%, 96%);position: absolute;top: 10vh;"><h1 id="st表介绍">ST表介绍</h1>
+<h2 id="什么是rmq问题">什么是RMQ问题</h2>
+<p>RMQ（区间最值问题），指对于一个序列<span
+class="math inline"><em>A</em></span>，询问每一对<span
+class="math inline">(<em>i</em>,<em>j</em>)</span>，求<span
+class="math inline"><em>a</em><sub><em>i</em></sub> <em>a</em><sub><em>j</em></sub></span>之间的最大（或小）值。一般这样的问题，一般会有很多次询问。</p>
+<h2 id="什么是st表">什么是ST表</h2>
+<p>ST 表（Sparse Table，稀疏表）是用于解决
+<strong>可重复贡献问题</strong> 的数据结构。</p>
+<h2 id="什么是可重复贡献问题">什么是可重复贡献问题</h2>
+<p>可重复贡献问题是指，对于一个运算<span
+class="math inline"><em>o</em><em>p</em><em>t</em></span>，满足<span
+class="math inline"><em>x</em><em>o</em><em>p</em><em>t</em><em>x</em> = <em>x</em></span>，则对应<span
+class="math inline"><em>o</em><em>p</em><em>t</em></span>操作的区间查询问题就是<strong>可重复贡献问题</strong>。
+比如，<span
+class="math inline"><em>m</em><em>a</em><em>x</em>(<em>x</em>,<em>x</em>) = <em>x</em></span>，<span
+class="math inline"><em>m</em><em>i</em><em>n</em>(<em>x</em>,<em>x</em>) = <em>x</em></span>，所以RMQ（区间最值问题）属于可重复贡献问题，可以用<strong>ST表</strong>解决。注意，对于其他可重复贡献问题，<span
+class="math inline"><em>o</em><em>p</em><em>t</em></span>必须满足交换率才能用<strong>ST表</strong>解决。</p>
+<h1 id="例题">例题</h1>
+<p><a href="https://www.luogu.com.cn/problem/P3865">P3865 【模板】ST 表
+&amp;&amp; RMQ 问题</a></p>
+<p>题目大意：给定两个数<span
+class="math inline"><em>N</em></span>和<span
+class="math inline"><em>M</em></span>，下面一行<span
+class="math inline"><em>N</em></span>个数，表示<span
+class="math inline"><em>a</em><sub>1</sub> <em>a</em><sub><em>n</em></sub></span>，接下来<span
+class="math inline"><em>M</em></span>行,每行两个数<span
+class="math inline"><em>l</em></span>和<span
+class="math inline"><em>r</em></span>，输出<span
+class="math inline"><em>m</em><em>a</em><em>x</em>(<em>a</em><sub><em>l</em></sub>,<em>a</em><sub><em>l</em> + 1</sub>,<em>a</em><sub><em>l</em> + 2</sub>,...,<em>a</em><sub><em>r</em></sub>)</span>。</p>
+<h1 id="做法">做法</h1>
+<p>我们首先用<span
+class="math inline">𝒪(<em>n</em>log(<em>n</em>))</span>的时间复杂度处理出序列中每个长度为<span
+class="math inline">2<sup><em>x</em></sup></span>次方的区间。我们就可以发现，任意一个区间都可以用至多两个预处理过的区间覆盖。所以可以用<span
+class="math inline">𝒪(1)</span>的时间复杂度求解每一个询问。</p>
+<p>因为<span
+class="math inline"><em>m</em><em>a</em><em>x</em></span>满足可重复贡献，所以两个预处理过的区间重合的部分不会影响结果。这也是为什么ST表不能求区间和的原因。</p>
+<h2 id="具体实现">具体实现</h2>
+<p>我们设定一个数组f用来储存”每个长度为<span
+class="math inline">2<sup><em>x</em></sup></span>次方的区间“,设<span
+class="math inline"><em>f</em><sub><em>i</em>, <em>j</em></sub></span>为区间<span
+class="math inline">[<em>i</em>,<em>i</em>+2<sup><em>j</em></sup>−1]</span>的最大值。
+每个长度为1的区间的最大值都是这个数自己。即所有<span
+class="math inline"><em>f</em><sub><em>i</em>, 0</sub> = <em>a</em><sub><em>i</em></sub></span>。</p>
+<p>对于其它的区间，我们不必遍历整个区间去寻找最大值。我们可以将其分为两个区间，取两个区间的最大值的最大值（请仔细理解这句话）即可。所以<span
+class="math inline"><em>f</em><sub><em>i</em>, <em>j</em></sub> = <em>m</em><em>a</em><em>x</em>(<em>f</em><sub><em>i</em>, <em>j</em> − 1</sub>,<em>f</em><sub><em>i</em> + 2<sup><em>j</em> − 1</sup>, <em>j</em> − 1</sub>)</span>
+预处理部分参考代码：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 初始st[i][0] = a[i]，此处省略</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">// log2[n] 为log2(n)，通过for循环预处理实现</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> step <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> step <span class="op">&lt;=</span> log2<span class="op">[</span>n<span class="op">];</span> <span class="op">++</span>step<span class="op">)</span> <span class="co">// 因为log2(n) ^ n = n，因此循环到log2[n]</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">+</span> <span class="op">(</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> step<span class="op">)</span> <span class="op">-</span> <span class="dv">1</span> <span class="op">&lt;=</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="co">// 循环到末尾，防止越界</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        f<span class="op">[</span>step<span class="op">][</span>i<span class="op">]</span> <span class="op">=</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            max<span class="op">(</span>f<span class="op">[</span>step <span class="op">-</span> <span class="dv">1</span><span class="op">][</span>i<span class="op">],</span> f<span class="op">[</span>step <span class="op">-</span> <span class="dv">1</span><span class="op">][</span>i <span class="op">+</span> <span class="op">(</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="op">(</span>step <span class="op">-</span> <span class="dv">1</span><span class="op">))]);</span> <span class="co">// 取两个子区间的最大值</span></span></code></pre></div>
+<p>到现在，预处理部分已经完成了，下面我们来看看如何实现<span
+class="math inline">𝒪(1)</span>的查询。
+跟据可重复贡献问题的性质，我们无需取两个正好拼接的序列，只需要取得两个序列覆盖询问序列即可。所以对于区间<span
+class="math inline">(<em>l</em>,<em>r</em>)</span>，两个区间分别是<span
+class="math inline">[<em>l</em>,<em>l</em>+2<sup><em>s</em></sup>−1]</span>和<span
+class="math inline">[<em>r</em>−2<sup><em>s</em></sup>+1,<em>r</em>]</span>，其中<span
+class="math inline"><em>s</em> = ⌊log<sub>2</sub>(<em>r</em>−<em>l</em>+1)⌋</span>。两个部分的最大值就是答案，下面给出询问部分的代码。</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// l,r是输入给定的数</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> log2<span class="op">[</span>r <span class="op">-</span> l <span class="op">+</span> <span class="dv">1</span><span class="op">];</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>max<span class="op">(</span>f<span class="op">[</span>t<span class="op">][</span>l<span class="op">],</span>f<span class="op">[</span>t<span class="op">][</span>r <span class="op">-</span> <span class="op">(</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> t<span class="op">)</span> <span class="op">+</span> <span class="dv">1</span><span class="op">]);</span> <span class="co">// 求两个区间的最大值，注意下标第二维是指区间长度为2^x次方，不是右端点</span></span></code></pre></div>
+</div>
+    </body>
+</html>

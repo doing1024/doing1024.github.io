@@ -1,0 +1,9 @@
+#+begin_src elisp
+  (defun sayhello (name1 name2)
+    "say hello to name1 and name2"
+    (message "Hello %s & %s" name1 name2))
+  (sayhello "dongwei" "fanghui")
+#+end_src
+
+#+RESULTS:
+: hello world
