@@ -41,7 +41,7 @@ class dlog(object):
             print(file)
             postbody = pypandoc.convert_file(f"posts/{file}","html")
             with open(f"build/{file.split('.')[0]}.html","w") as output,open(f"themes/{theme}/template/post.html","r") as tmplt:
-                s = tmplt.read().replace("{{{postBody}}}",postbody)
+                s = tmplt.read().replace("{{{postBody}}}",postbody).replace("file:///","/")
                 words = list(set(re.compile(r"\{\{\{.*\}\}\}").findall(s)))
                 for word in words:
                     s = s.replace(word,config[word[3:-3]])
