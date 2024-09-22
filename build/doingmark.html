@@ -15,11 +15,16 @@
          }
          .pstbdy{
              width: 100vw;
+             flex: auto;
          }
          p{
              white-space: normal;
              word-break: break-word; 
              line-break: anywhere;
+         }
+         body{
+             display: flex;
+             flex-direction: column;
          }
          @media screen and (max-width: 750px){
          body{
@@ -29,9 +34,9 @@
          </style>
     </head>
     <body style="background-color: hsl(204,60%,96%);">
-        <div style="background-color: hsl(204, 60%, 96%);position: fixed;width: 100vw;left: 0;top: 0;z-index:999;height: 10vw;"><a href="https://doing1024.us.kg" style="text-decoration: none;">
+        <div style="background-color: hsl(204, 60%, 96%);z-index:999;flex-shrink: 0;"><a href="https://doing1024.us.kg" style="text-decoration: none;">
             <h1 style="color: hsl(204, 90%, 45%);">doing的小破屋</h1></a></div>
-        <div style="background-color: hsl(204, 60%, 96%);position: absolute;top: 15vw;" class="pstbdy"><p>DoingMark，是我开发的一款在线的Markdown编辑器。</p>
+        <div style="background-color: hsl(204, 60%, 96%);" class="pstbdy"><p>DoingMark，是我开发的一款在线的Markdown编辑器。</p>
 <h1
 id="为什么采用分屏而不是wysiwyg所见即所得">为什么采用分屏而不是WYSIWYG（所见即所得）</h1>
 <p>首先，自己实力不够的确是一方面。</p>
