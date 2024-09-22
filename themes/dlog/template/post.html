@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charset="utf-8">
         <title>{{{siteTitle}}}</title>
         <style>
@@ -10,14 +11,14 @@
          }
          @media screen and (max-width: 750px){
          body{
-             font-size: 10vw !important;
+             font-size: 5vw !important;
          }
          }
          </style>
     </head>
     <body style="background-color: hsl(204,60%,96%);">
-        <div style="background-color: hsl(204, 60%, 96%);position: fixed;width: 100vw;left: 0;top: 0;z-index:999;height: 5vh;"><a href="{{{siteUrl}}}" style="text-decoration: none;">
+        <div style="background-color: hsl(204, 60%, 96%);position: fixed;width: 100vw;left: 0;top: 0;z-index:999;height: 10vw;"><a href="{{{siteUrl}}}" style="text-decoration: none;">
             <h1 style="color: hsl(204, 90%, 45%);">{{{siteName}}}</h1></a></div>
-        <div style="background-color: hsl(204, 60%, 96%);position: absolute;top: 5vh;" class="pstbdy">{{{postBody}}}</div>
+        <div style="background-color: hsl(204, 60%, 96%);position: absolute;top: 15vw;" class="pstbdy">{{{postBody}}}</div>
     </body>
 </html>
