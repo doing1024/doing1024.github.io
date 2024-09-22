@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>doing的小破屋</title>
+        <style>
+         a {
+             text-decoration: none;
+             color: hsl(204,90%,45%);
+         }
+         @media screen and (max-width: 750px){
+         body{
+             font-size: 10vw !important;
+         }
+         }
+         </style>
+    </head>
+    <body style="background-color: hsl(204,60%,96%);">
+        <div style="background-color: hsl(204, 60%, 96%);position: fixed;width: 100vw;left: 0;top: 0;z-index:999;"><a href="https://doing1024.us.kg" style="text-decoration: none;">
+            <h1 style="color: hsl(204, 90%, 45%);">doing的小破屋</h1></a></div>
+        <div style="background-color: hsl(204, 60%, 96%);position: absolute;" class="pstbdy"><h1 id="概念">概念</h1>
+<ol type="1">
+<li>素数：除了0、1，没有1和自身以外的因子的自然数，又称质数</li>
+<li>合数：除了质数和0、1以外的所有自然数</li>
+<li>筛法：一般指通过一些方法筛选 <span class="math inline">1</span> ～
+<span class="math inline"><em>n</em></span>之间所有质数的方法</li>
+</ol>
+<h1 id="方法1逐个判断">方法1：逐个判断</h1>
+<p>相信大家一定都会判断单个数是不是质数，这时我们对每一个数进行一次
+<span class="math inline">$\mathcal{O}(\sqrt{x})$</span>
+的判断，就可以得出所有的质数，时间复杂度为 <span
+class="math inline">$\mathcal{O}(n \sqrt{x})$</span>
+。仍然不懂可以参考代码:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> prime<span class="op">(</span><span class="dt">int</span> n<span class="op">){</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">2</span><span class="op">;</span>i <span class="op">*</span> i <span class="op">&lt;=</span> n<span class="op">;++</span>i<span class="op">){</span> <span class="co">// 只需要到根号n就可以了</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>n <span class="op">%</span> i <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n<span class="op">;</span><span class="dt">bool</span> ans<span class="op">[</span><span class="dv">100</span><span class="op">];</span> <span class="co">// ans是结果，质数为1，合数为0</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(){</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    cin <span class="op">&gt;&gt;</span> n<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span>i <span class="op">&lt;=</span> n<span class="op">;++</span>i<span class="op">)</span> ans<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> prime<span class="op">(</span>i<span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="方法2埃筛">方法2：埃筛</h1>
+<p>我们可以定义一个数组<code>ans</code>，如果 <span
+class="math inline"><em>a</em><em>n</em><em>s</em><sub><em>i</em></sub> = 1</span>
+，则代表 <span class="math inline"><em>i</em></span>
+是素数，反之则是合数。</p>
+<p>首先假设我们“信任”每一个数，即假设每一个数都是质数，也就是把每一个数的<code>ans</code>都标记为1。</p>
+<p>然后从2开始看每一个数，如果这个数目前为止仍然“被信任”，即<code>ans</code>是1，则它是质数，反之则是合数。</p>
+<p>如果它是质数，则接着看它的所有倍数，既然都是它的倍数，那么肯定不是质数，这时我们“恍然大悟”，不再“信任”这些数，把他们的<code>ans</code>标记为0。</p>
+<p>看完所有数后，<code>ans</code>为1的数都是质数。 代码：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> prime<span class="op">[</span><span class="dv">100</span><span class="op">];</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> judge_prime<span class="op">(</span><span class="dt">int</span> n<span class="op">){</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    memset<span class="op">(</span>prime<span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="kw">sizeof</span><span class="op">(</span>prime<span class="op">));</span> <span class="co">// 一开始“信任”所有数</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">2</span><span class="op">;</span>i <span class="op">&lt;=</span> n<span class="op">;++</span>i<span class="op">)</span> <span class="co">// 开始看每一个数，注意从2开始</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>prime<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="co">// 如果目前为止仍然“被信任”，则是素数</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> i <span class="op">*</span> <span class="dv">2</span><span class="op">;</span>j <span class="op">&lt;=</span> n<span class="op">;</span>j <span class="op">+=</span> i<span class="op">)</span> <span class="co">// 不再“信任”素数的倍数</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                prime<span class="op">[</span>j<span class="op">]=</span><span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>以上代码我们还可以继续优化，首先，<code>j</code>可以从<code>i * i</code>开始，因为<code>2 * i</code>、…、<code>i - 1 * i</code>已经被2到<code>i - 1</code>标记过了，所以从<code>i * i</code>开始即可。其次，<code>i</code>到根号n就可以了，因为所有数的每一对因子一定有一个大于根号n，另一个小于根号n，，所以到根号n的时候所有合数就都会被标记过了。
+优化后代码：</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> prime<span class="op">[</span><span class="dv">100</span><span class="op">];</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> judge_prime<span class="op">(</span><span class="dt">int</span> n<span class="op">){</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    memset<span class="op">(</span>prime<span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="kw">sizeof</span><span class="op">(</span>prime<span class="op">));</span> <span class="co">// 一开始“信任”所有数</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">2</span><span class="op">;</span>i <span class="op">*</span> i <span class="op">&lt;=</span> n<span class="op">;++</span>i<span class="op">)</span> <span class="co">// 开始看每一个数，注意从2开始</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>prime<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="co">// 如果目前为止仍然“被信任”，则是素数</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> i <span class="op">*</span> i<span class="op">;</span>j <span class="op">&lt;=</span> n<span class="op">;</span>j <span class="op">+=</span> i<span class="op">)</span> <span class="co">// 不再“信任”素数的倍数</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                prime<span class="op">[</span>j<span class="op">]=</span><span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="方法3线性筛欧拉筛">方法3：线性筛（欧拉筛）</h1>
+<p>刚才我们的筛法已经比较快了，但是还可以更快。如何做到更快，我们发现，经过优化以后仍然有很多数被重复筛，比如12。这时，如果你能想到让每一个数只让他的最小因数筛，那么恭喜你，你成功设计了欧拉筛！那么如何做到呢？我们定义一个数组<code>a</code>，让所有的素数都存入<code>a</code>，然后每次筛的时候只让<code>i</code>乘<code>a</code>里的每一个数。并且，如果<code>i % a[j] == 0</code>，也就是<code>i</code>也已经被<code>a[j]</code>筛过一遍了，而且我们是从小到大看的<code>a</code>，说明<code>a[j]</code>就是<code>a[j] * i</code>的最小因子，达到了我们筛最小因子的目的，因此可以直接<code>break</code>了，详见代码：</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> prime<span class="op">[</span><span class="dv">100</span><span class="op">];</span><span class="dt">int</span> a<span class="op">[</span><span class="dv">100</span><span class="op">],</span>tot<span class="op">;</span> <span class="co">// prime意同上文，a表示素数列表，tot表示目前有多少素数</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> judge_prime<span class="op">(</span><span class="dt">int</span> n<span class="op">){</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    memset<span class="op">(</span>prime<span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="kw">sizeof</span><span class="op">(</span>prime<span class="op">));</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">2</span><span class="op">;</span>i <span class="op">&lt;=</span> n<span class="op">;++</span>i<span class="op">){</span> <span class="co">// 看每一个数</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>prime<span class="op">[</span>i<span class="op">])</span> a<span class="op">[++</span>tot<span class="op">]</span> <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span>j <span class="op">&lt;=</span> tot<span class="op">;++</span>j<span class="op">){</span> <span class="co">// 由于每一个数只是找到最小质因子标记后就停止标记了，所以要让合数一起“帮忙”标记</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>i <span class="op">*</span> a<span class="op">[</span>j<span class="op">]</span> <span class="op">&gt;</span> n<span class="op">)</span> <span class="cf">break</span><span class="op">;</span> <span class="co">// 不管分外事😄</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            prime<span class="op">[</span>i <span class="op">*</span> a<span class="op">[</span>j<span class="op">]]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// 既然可以被两数相乘得出，肯定是合数</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>i <span class="op">%</span> a<span class="op">[</span>j<span class="op">]</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">break</span><span class="op">;</span> <span class="co">// i之前被a[j]筛过，那么i * a[j + 1 ~ tot]也一定会被a[j]的倍数筛掉，这里先跳过，节省时间</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</div>
+    </body>
+</html>
