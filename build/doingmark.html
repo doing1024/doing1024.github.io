@@ -9,6 +9,18 @@
              text-decoration: none;
              color: hsl(204,90%,45%);
          }
+         img {
+             width: 90vw;
+             z-index: 1000;
+         }
+         .pstbdy{
+             width: 100vw;
+         }
+         p{
+             white-space: normal;
+             word-break: break-word; 
+             line-break: anywhere;
+         }
          @media screen and (max-width: 750px){
          body{
              font-size: 5vw !important;
@@ -44,5 +56,13 @@ href="https://doingmark.doing1024.us.kg">DoingMark</a></li>
 <li>求STAR⭐🙏~</li>
 </ul>
 </div>
+        <script>
+         var lst = document.getElementsByTagName("img");
+         for (var i = 0;i < lst.length;++i) lst[i].setAttribute("data-zoomable","");
+         document.addEventListener('DOMContentLoaded', function () {
+             mediumZoom('[data-zoomable]');
+         });
+        </script>
     </body>
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
 </html>
