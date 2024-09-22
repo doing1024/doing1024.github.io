@@ -10,7 +10,7 @@
              color: hsl(204,90%,45%);
          }
          @media only screen and (max-width: 767px) {
-             body{
+             .pstbdy{
                  font-size: 10vw;
              }
          }
@@ -19,6 +19,6 @@
     <body style="background-color: hsl(204,60%,96%);">
         <div style="background-color: hsl(204, 60%, 96%);position: fixed;width: 100vw;height: 10vh;left: 0;top: 0;z-index:999;"><a href="{{{siteUrl}}}" style="text-decoration: none;">
             <h1 style="color: hsl(204, 90%, 45%);">{{{siteName}}}</h1></a></div>
-        <div style="background-color: hsl(204, 60%, 96%);position: absolute;top: 10vh;">{{{postBody}}}</div>
+        <div style="background-color: hsl(204, 60%, 96%);position: absolute;top: 10vh;" class="pstbdy">{{{postBody}}}</div>
     </body>
 </html>
