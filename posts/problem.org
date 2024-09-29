@@ -9,7 +9,7 @@
 + 设a、b之间的小三角形为c
 + 设g-a=d
 + 设g-b-c=e
-+ {{{bcs}}} a+d的底为AD,a+c的底亦为AD.a+d的高为AB,a+c的高=AB
++ because a+d的底为AD,a+c的底亦为AD.a+d的高为AB,a+c的高=AB
 + {{{tf}}} a+d=a+c
 + {{{tf}}} d=c
 + {{{bcs}}} d+a=c+b+e
