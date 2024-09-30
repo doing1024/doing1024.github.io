@@ -41,7 +41,7 @@ class Dlog:
             words = list(set(re.compile(r"\{\{\{.*\}\}\}").findall(s)))
             for word in words:
                 s = s.replace(word, config[word[3:-3]])
-                output.write(s)
+            output.write(s)
                     
     def build(self):
         """实现dlog build命令"""
