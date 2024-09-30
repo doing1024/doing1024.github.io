@@ -4,7 +4,7 @@ import re
 import shutil
 import pypandoc
 import fire
-import toml
+import toml,threading
 
 
 class Dlog:
@@ -31,6 +31,18 @@ class Dlog:
         with open("config.toml", "w"):
             pass
 
+    def __build(self,file,config,theme):
+        if "private" in file:
+            shutil.copytree(f"posts/{file}", f"./build/{file}")
+            return
+        postbody = pypandoc.convert_file(f"posts/{file}", "html")
+        with open(f"build/{file.split('.')[0]}.html", "w") as output, open(f"themes/{theme}/template/post.html", "r") as tmplt:
+            s = tmplt.read().replace("{{{postBody}}}", postbody).replace("file:///",config["siteUrl"])
+            words = list(set(re.compile(r"\{\{\{.*\}\}\}").findall(s)))
+            for word in words:
+                s = s.replace(word, config[word[3:-3]])
+                output.write(s)
+                    
     def build(self):
         """实现dlog build命令"""
         config = self.__readconfig()
@@ -38,16 +50,7 @@ class Dlog:
         os.mkdir("build")
         theme = config["theme"]
         for file in os.listdir("posts"):
-            if "private" in file:
-                shutil.copytree(f"posts/{file}", f"./build/{file}")
-                continue
-            postbody = pypandoc.convert_file(f"posts/{file}", "html")
-            with open(f"build/{file.split('.')[0]}.html", "w") as output, open(f"themes/{theme}/template/post.html", "r") as tmplt:
-                s = tmplt.read().replace("{{{postBody}}}", postbody).replace("file:///",config["siteUrl"])
-                words = list(set(re.compile(r"\{\{\{.*\}\}\}").findall(s)))
-                for word in words:
-                    s = s.replace(word, config[word[3:-3]])
-                output.write(s)
+            threading.Thread(target=self.__build,args=(file,config,theme)).start()
 
     def new(self, typ):
         """实现dlog new"""
