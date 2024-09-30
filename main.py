@@ -42,6 +42,7 @@ class Dlog:
         for file in os.listdir("posts"):
             if os.path.isdir(file):
                 shutil.copytree(file, "build")
+                continue
             postbody = pypandoc.convert_file(f"posts/{file}", "html")
             with open(f"build/{file.split('.')[0]}.html", "w") as output, open(f"themes/{theme}/template/post.html", "r") as tmplt:
                 s = tmplt.read().replace("{{{postBody}}}", postbody)
