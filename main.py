@@ -31,17 +31,15 @@ class Dlog:
         with open("config.toml", "w"):
             pass
 
-    def build(self, i=False):
+    def build(self):
         """实现dlog build命令"""
         config = self.__readconfig()
-        if i:
-            pypandoc.pandoc_download.download_pandoc()
         shutil.rmtree("build")
         os.mkdir("build")
         theme = config["theme"]
         for file in os.listdir("posts"):
-            if os.path.isdir(file):
-                shutil.copytree(file, "build")
+            if "private" in file:
+                shutil.copytree(file, "./build/")
                 continue
             postbody = pypandoc.convert_file(f"posts/{file}", "html")
             with open(f"build/{file.split('.')[0]}.html", "w") as output, open(f"themes/{theme}/template/post.html", "r") as tmplt:
