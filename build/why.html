@@ -327,7 +327,7 @@ id="linux做不了的有用的事windows照样做不了">Linux做不了的有用
 </div>
         <script>
          var lst = document.getElementsByTagName("img");
-         for (var i = 1;i < lst.length;++i) lst[i].setAttribute("data-zoomable","");
+         for (var i = 0;i < lst.length;++i) lst[i].setAttribute("data-zoomable","");
          document.addEventListener('DOMContentLoaded', function () {
              mediumZoom('[data-zoomable]');
          });

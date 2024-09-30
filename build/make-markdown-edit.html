@@ -387,7 +387,7 @@ href="./make-markdown-edit2.md">从零开始带你做Markdown编辑器（二）�
 </div>
         <script>
          var lst = document.getElementsByTagName("img");
-         for (var i = 1;i < lst.length;++i) lst[i].setAttribute("data-zoomable","");
+         for (var i = 0;i < lst.length;++i) lst[i].setAttribute("data-zoomable","");
          document.addEventListener('DOMContentLoaded', function () {
              mediumZoom('[data-zoomable]');
          });
