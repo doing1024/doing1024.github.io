@@ -39,7 +39,7 @@ class Dlog:
         theme = config["theme"]
         for file in os.listdir("posts"):
             if "private" in file:
-                shutil.copytree(f"posts/{file}", "./build/")
+                shutil.copytree(f"posts/{file}", f"./build/{file}")
                 continue
             postbody = pypandoc.convert_file(f"posts/{file}", "html")
             with open(f"build/{file.split('.')[0]}.html", "w") as output, open(f"themes/{theme}/template/post.html", "r") as tmplt:
