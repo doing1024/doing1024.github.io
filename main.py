@@ -33,7 +33,7 @@ class Dlog:
             pass
 
     def __build(self, file, config, theme):
-        if "private" in file:
+        if file in config["noBuildFiles"]:
             shutil.copytree(f"posts/{file}", f"./build/{file}")
             return
         postbody = pypandoc.convert_file(f"posts/{file}", "html")
@@ -51,9 +51,12 @@ class Dlog:
         shutil.rmtree("build")
         os.mkdir("build")
         theme = config["theme"]
-        for file in os.listdir("posts"):
-            threading.Thread(target=self.__build, args=(
-                file, config, theme)).start()
+        for file1,_,file2 in os.walk("posts"):
+            for file3 in file2:
+                file = os.path.join(file1,file3)
+                file  = re.sub(".*posts/","",file)
+                threading.Thread(target=self.__build, args=(
+                    file, config, theme)).start()
 
     def new(self, typ):
         """实现dlog new"""

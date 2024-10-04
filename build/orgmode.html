@@ -326,12 +326,12 @@ mode中，我们可以方便的折叠和展开headline,对于一个headline,按&
 </ul>
 <h2 id="列表">列表</h2>
 <p>用+、-、*加空格来组织无序列表，列表与headline一样，可以嵌套，像这样</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode org"><code class="sourceCode orgmode"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>哈哈</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  * 嘻嘻</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  * 拉拉</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>我很快乐</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>咚咚 </span></code></pre></div>
+<pre class="example"><code>+ 哈哈
+  * 嘻嘻
+  * 拉拉
++ 我很快乐
+  - 咚咚 
+</code></pre>
 <p>注意不要让*作为一级列表，不然会被认为是headline。</p>
 <p>有序列表与无序列表类似，使用1.或1)加空格开头。</p>
 <p>在列表后加两个空行表示结束。</p>
@@ -350,14 +350,15 @@ class="sourceCode org"><code class="sourceCode orgmode"><span id="cb1-1"><a href
 <p><code class="verbatim">代码</code> 前后各一个等号</p>
 <h3 id="组合">组合</h3>
 <p><em><u><strong><del><code
-class="verbatim">随意组合粗体删除下划线斜体代码</code></del></strong></u></em></p>
+class="verbatim">随意组合粗体删除下划线斜体代码</code></del></strong></u></em>
+注意，行内代码需要在最内层，因为其内部的内容会被原样显示。</p>
 <h2 id="块">块</h2>
 <h3 id="引用块">引用块</h3>
 <p>在org mode中引用需要借助于“块”来实现，像这样：</p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode org"><code class="sourceCode orgmode"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">#+BEGIN_QUOTE</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">我被引用了！</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">#+END_QUOTE</span></span></code></pre></div>
+<pre class="example"><code>#+BEGIN_QUOTE
+我被引用了！
+#+END_QUOTE
+</code></pre>
 <p>效果是这样的：</p>
 <blockquote>
 <p>我被引用了！</p>
@@ -380,6 +381,33 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a hr
 <p>使用 <code class="verbatim">[[链接][链接描述]]</code> 或 <code
 class="verbatim">[[链接]]</code>
 来声明链接。如果是图片，那么使用第二种链接格式套入图片的url即可。</p>
+<h1 id="表格">表格</h1>
+<p>最简单的表格长这样：</p>
+<pre class="example"><code>| 1 | 2 | 3 |
+| 4 | 5 | 6 |
+| 7 | 8 | 9 |
+</code></pre>
+<p>效果如下：</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>8</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<p>不用担心你的表格对不齐，按下TAB即可（如果想要切换到下一行同一位置，使用Enter）</p>
 <h1 id="文档信息">文档信息</h1>
 <p>就像headline一节提到的一样，我们可以指定文档的标题，在文档的开头，像这样：</p>
 <pre class="example"><code>#+TITLE: 文档标题
