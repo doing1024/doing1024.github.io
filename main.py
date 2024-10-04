@@ -53,6 +53,8 @@ class Dlog:
                 shutil.copytree(f"posts/{nobuildfile}", f"./build/{nobuildfile}")
             except:
                 pass
+        for file in os.listdir(f"themes/{theme}/template/"):
+            shutil.copy(os.path.join(f"themes/{theme}/template/",file),"build/")
         for file1,_,file2 in os.walk("posts"):
             for file3 in file2:
                 file = os.path.join(file1,file3)
