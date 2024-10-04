@@ -106,5 +106,9 @@ print("hello,world")
 就像headline一节提到的一样，我们可以指定文档的标题等信息，在文档的开头，像这样：
 #+BEGIN_EXAMPLE
 #+TITLE: 文档标题
-
+#+AUTHOR: 作者
+#+DATE: 日期
+#+EMAIL: 邮箱
+#+DESCRIPTION: 描述
+以及很多。。。
 #+END_EXAMPLE

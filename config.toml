@@ -4,3 +4,4 @@ theme = "dlog"
 siteUrl = "https://doing1024.us.kg/"
 
 noBuildFiles = ["private"]
+aboutUrl = "/about.html"
