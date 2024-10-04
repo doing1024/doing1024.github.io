@@ -57,11 +57,14 @@ class Dlog:
             for file3 in file2:
                 file = os.path.join(file1,file3)
                 file  = re.sub(".*posts/","",file)
+                flag = False
                 for nobuildfile in config["noBuildFiles"]:
                     if file.startswith(nobuildfile):
-                        continue
-                threading.Thread(target=self.__build, args=(
-                    file, config, theme)).start()
+                        flag = True
+                        break
+                if not flag:
+                    threading.Thread(target=self.__build, args=(
+                        file, config, theme)).start()
 
     def new(self, typ):
         """实现dlog new"""
