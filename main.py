@@ -34,6 +34,10 @@ class Dlog:
 
     def __build(self, file, config, theme):
         postbody = pypandoc.convert_file(f"posts/{file}", "html")
+        try:
+            os.makedirs(os.path.dirname(os.path.join("build",file)))
+        except:
+            pass
         with open(f"build/{file.split('.')[0]}.html", "w") as output, open(f"themes/{theme}/template/post.html", "r") as tmplt:
             s = tmplt.read().replace("{{{postBody}}}", postbody).replace(
                 "file:///", config["siteUrl"])

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8">
+        <title>doing的小破屋</title>
+        <style>
+         img {
+             width: 90vw;
+             z-index: 1000;
+         }
+         .pstbdy{
+             width: 100vw;
+             flex: auto;
+         }
+         body{
+             display: flex;
+             flex-direction: column;
+         }
+         @media screen and (max-width: 750px){
+             body{
+		 font-size: 5vw !important;
+             }
+         }
+	 /* Sspai Web Theme A theme to [sspai](ssp.ai) default theme. Developed by Codegass(wchweichenhao@gmial.com) & Yves(yves@sspai.com) Download Cuto on the App Store and Google Play! */
+	 body {
+	     font-size: 15px;
+	     color:#333;
+	     background:#fff;
+	     font-family: Helvetica, Arial, "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+	     margin: 0;
+	 }
+	 h1 {
+	     font-size: 2.2em;
+	     font-weight: 700;
+	     line-height: 1.1;
+	     padding-top: 16px;
+	     margin-bottom: 4px;
+	 }
+	 h2, h3, h4, h5, h6 {
+	     line-height: 1.5em;
+	     margin-top: 2.2em;
+	     margin-bottom: 4px;
+	 }
+	 h2 {
+	     font-size: 1.4em;
+	     margin: 40px 10px 20px 0;
+	     padding-left: 9px;
+	     border-left: 6px solid #ff7e79;
+	     font-weight: 700;
+	     line-height: 1.4;
+	 }
+	 h3 {
+	     font-weight: 700;
+	     font-size: 1.2em;
+	     line-height: 1.4;
+	     margin: 10px 0 5px;
+	     padding-top: 10px;
+	 }
+	 h4 {
+	     font-weight: 700;
+	     text-transform: uppercase;
+	     font-size: 1.1em;
+	     line-height: 1.4;
+	     margin: 10px 0 5px;
+	     padding-top: 10px
+	 }
+	 h5, h6 {
+	     font-size: .9em;
+	 }
+	 h5 {
+	     font-weight: bold;
+	     text-transform: uppercase;
+	 }
+	 h6 {
+	     font-weight: normal;
+	     color: #AAA;
+	 }
+	 img {
+	     width: 100%;
+	     border-radius: 5px;
+	     display: block;
+	     margin-bottom: 15px;
+	     height: auto;
+	 }
+	 dl,ol,ul {
+	     margin-top: 12px;
+	     margin-bottom: 20px;
+	     padding-left: 5%;
+	     line-height: 1.8;
+	 }
+	 p {
+	     margin: 0 0 20px;
+	     padding: 0;
+	     line-height: 1.8;
+	 }
+	 a {
+	     text-decoration: none;
+	     color: black;
+	     border-bottom: 1px solid #d71a1b;
+	 }
+	 a:focus {
+	     outline-offset: -2px;
+	 }
+	 blockquote {
+	     font-size: 1em;
+	     font-style: normal;
+	     padding: 30px 38px;
+	     margin: 0 0 15px;
+	     position: relative;
+	     line-height: 1.8;
+	     text-indent: 0;
+	     border: none;
+	     color: #888;
+	 }
+	 blockquote:before {
+	     content: "“";
+	     left: 12px;
+	     top: 0;
+	     color: #E0E0E0;
+	     font-size: 4em;
+	     font-family: Arial, serif;
+	     line-height: 1em;
+	     font-weight: 700;
+	     position: absolute;
+	 }
+	 blockquote:after {
+	     content: "”";
+	     right: 12px;
+	     bottom: -26px;
+	     color: #E0E0E0;
+	     font-size: 4em;
+	     font-family: Arial, serif;
+	     line-height: 1em;
+	     font-weight: 700;
+	     position: absolute;
+	     bottom: -31px;
+	 }
+	 strong, dfn {
+	     font-weight: 700;
+	 }
+	 em, dfn {
+	     font-style: italic;
+	     font-weight: 400;
+	 }
+	 del {
+	     text-decoration: line-through;
+	 }
+	 /*code {font-size:90%;}*/
+	 /*pre {text-align:left; overflow-x: scroll; color: #257fa0; background: #f6f6f6; padding: 10pt 15pt; border-radius: 3px; border: solid 1px #e2e2e2;}*/
+	 pre {
+	     margin: 0 0 10px;
+	     font-size: 13px;
+	     line-height: 1.42857;
+	     word-break: break-all;
+	     word-wrap: break-word;
+	     border-radius: 4px;
+	     white-space: pre-wrap;
+	     display: block;
+	     background: #f8f8f8;
+	     padding: 10px 20px;
+	     border: none;
+	     margin-bottom: 25px;
+	     color: #666;
+	     font-family: Courier, sans-serif;
+	 }
+	 code {
+	     color: #c7254e;
+	     background-color: #f9f2f4;
+	     border-radius: 4px;
+	     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+	     padding: 2px 4px;
+	     font-size: 90%;
+	 }
+	 p > code {
+	     color: #c7264e;
+	     background-color: #f9f2f4;
+	     font-size: .95em;
+	     border-radius: 3px;
+	     -moz-border-radius: 3px;
+	     -webkit-border-radius: 3px;
+	 }
+	 figure {
+	     margin: 1em 0;
+	 }
+	 figcaption {
+	     font-size: 0.75em;
+	     padding:0.5em 2em;
+	     margin-bottom: 2em;
+	 }
+	 figure img {
+	     margin-bottom: 0px;
+	 }
+	 hr {
+	     margin-top: 20px;
+	     margin-bottom: 20px;
+	     border: 0;
+	     border-top: 1px solid #eee;
+	 }
+	 ol p, ul p {
+	     margin-bottom: 0px;
+	 }
+	 li {
+	     margin-bottom: 0.75em;
+	     margin-top: 0.75em;
+	 }
+	 ol#footnotes {
+	     font-size: 0.95em;
+	     padding-top: 1em;
+	     margin-top: 1em;
+	     margin-left: 0;
+	     border-top: 1px solid #eaeaea;
+	     counter-reset: footer-counter;
+	     list-style: none;
+	     color: #555;
+	     padding-left: 5%;
+	     margin: 20px 0;
+	 }
+	 ol#footnotes li {
+	     margin-bottom: 10px;
+	     margin-left: 16px;
+	     font-weight: 400;
+	     line-height: 2;
+	     list-style-type: none;
+	 }
+	 ol#footnotes li:before {
+	     content: counter(footer-counter) ". ";
+	     counter-increment: footer-counter;
+	     font-weight: 800;
+	     font-size: .95em;
+	 }
+	 @keyframes highfade {
+	     0% {background-color: none;}
+	     20% {background-color: yellow;}
+	     100% {background-color: none;}
+	 }
+	 @-webkit-keyframes highfade {
+	     0% {background-color: none;} 
+	     20% {background-color: yellow;}
+	     100% {background-color: none;}
+	 }
+	 a:target, ol#footnotes li:target, sup a:target {
+	     animation-name: highfade;
+	     animation-duration: 2s;
+	     animation-iteration-count: 1;
+	     animation-timing-function: ease-in-out;
+	     -webkit-animation-name: highfade;
+	     -webkit-animation-duration: 2s;
+	     -webkit-animation-iteration-count: 1;
+	     -webkit-animation-timing-function: ease-in-out;
+	 }
+	 a:target {
+	     border:0;
+	     outline: 0;
+	     animation-iteration-count: 1;
+	     -webkit-animation-timing-function: ease-in-out;
+	 }
+	 a:target {
+	     border:0;
+	     outline: 0;
+	     tion-iteration-count: 1;
+	     -webkit-animation-timing-function: ease-in-out;
+	 }
+	 a:target {
+	     border:0;outline: 0;
+	 }
+	</style>
+	<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/atom-one-dark.min.css">
+    </head>
+    <body>
+        <div style="z-index:999;flex-shrink: 0;"><a href="https://doing1024.us.kg/" style="text-decoration: none;color: black;display:flex;flex-direction: row;flex-warp: nowarp;justify-content: flex-start;">
+            <h1>doing的小破屋</h1></a></div>
+        <div class="pstbdy"><p>由于最近入手了emacs作为自己的主力编辑器（主要是久仰orgmode大名），故使用orgmode作为了自己的主力标记语言。此处记录下orgmode的语法以供以后参考。</p>
+<h1 id="基础内容">基础内容</h1>
+<p>个人建议，使用orgmode一定要使用emacs，很多快捷键真的很爽。</p>
+<h2 id="headline">headline</h2>
+<p>headline,其实就相当于其他文档中N级标题。之所以此处仍然称之为headline，因为orgmode中还有一个文件标题（TITLE），为了区分，因此使用headline.</p>
+<p>在orgmode中使用headline的方式很简单，在文档中顶格写几个星号~*~，加一个空格，后面加上headline的名字，几个星号就是几级标题。</p>
+<p>orgmode对headline提供了丰富的快捷键：</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>快捷键</td>
+<td>功能</td>
+<td>备注</td>
+</tr>
+<tr class="even">
+<td>&lt;C-RET&gt;</td>
+<td>在当前headline <strong>及内容</strong> 后插入一个同级headline</td>
+<td>无headline时自动创建一个一级headline</td>
+</tr>
+<tr class="odd">
+<td>&lt;M-RET&gt;</td>
+<td>在当前headline后插入一个同级headline</td>
+<td>同上</td>
+</tr>
+<tr class="even">
+<td>&lt;M-right&gt;</td>
+<td>降低当前headline的等级</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>&lt;M-left&gt;</td>
+<td>提高当前headline的等级</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>&lt;M-up&gt;</td>
+<td>将当前headline <strong>及内容</strong> 作为整体上移</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>&lt;M-down&gt;</td>
+<td>将当前headline <strong>及内容</strong> 作为整体下移</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>在org
+mode中，我们可以方便的折叠和展开headline,对于一个headline,按&lt;Tab&gt;切换此headline的折叠状态，按&lt;S-Tab&gt;切换整个文档的折叠状态。</p>
+<p>headline的折叠状态有以下三种：</p>
+<ul>
+<li>折叠除了自身所有的内容，仅保留headline本身</li>
+<li>显示本身，切换子headline为上一状态</li>
+<li>展开所有内容</li>
+</ul>
+<h2 id="列表">列表</h2>
+<p>用+、-、*加空格来组织无序列表，列表与headline一样，可以嵌套，像这样</p>
+<pre class="example"><code>+ 哈哈
+  * 嘻嘻
+  * 拉拉
++ 我很快乐
+  - 咚咚 
+</code></pre>
+<p>注意不要让*作为一级列表，不然会被认为是headline。</p>
+<p>有序列表与无序列表类似，使用1.或1)加空格开头。</p>
+<p>在列表后加两个空行表示结束。</p>
+<p>列表的快捷键与headline的快捷键类似.</p>
+<h2 id="标记">标记</h2>
+<h3 id="粗体">粗体</h3>
+<p><strong>粗体</strong>
+左右各一个星号表示粗体，星号左右需要有至少一个空格或英文标点。</p>
+<h3 id="删除线">删除线</h3>
+<p><del>删除</del> 前后各一个+，其他同粗体</p>
+<h3 id="下划线">下划线</h3>
+<p><u>下滑线</u> 顾名思义，前后各一个“下划线”:)，其他同粗体</p>
+<h3 id="斜体">斜体</h3>
+<p><em>斜体</em> 前后各一个正斜杠“/”</p>
+<h3 id="行内代码">行内代码</h3>
+<p><code class="verbatim">代码</code> 前后各一个等号</p>
+<h3 id="组合">组合</h3>
+<p><em><u><strong><del><code
+class="verbatim">随意组合粗体删除下划线斜体代码</code></del></strong></u></em>
+注意，行内代码需要在最内层，因为其内部的内容会被原样显示。</p>
+<h2 id="块">块</h2>
+<h3 id="引用块">引用块</h3>
+<p>在org mode中引用需要借助于“块”来实现，像这样：</p>
+<pre class="example"><code>#+BEGIN_QUOTE
+我被引用了！
+#+END_QUOTE
+</code></pre>
+<p>效果是这样的：</p>
+<blockquote>
+<p>我被引用了！</p>
+</blockquote>
+<h3 id="代码">代码</h3>
+<ol>
+<li><p>插入代码</p>
+<p>我们用块来插入代码，比如这是一段python代码</p>
+<pre class="example"><code>#+BEGIN_SRC python
+print(&quot;hello,world&quot;)
+#+END_SRC
+</code></pre>
+<p>效果是这样的：</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;hello,world&quot;</span>)</span></code></pre></div>
+<p>在编辑代码块时会启动语言对应的主模式，所以如果配置得当，是可以享受自动缩进和代码补全的效果的。</p>
+<p>光标在代码块时，使用C-c C-c运行代码。</p></li>
+</ol>
+<h2 id="链接">链接</h2>
+<p>使用 <code class="verbatim">[[链接][链接描述]]</code> 或 <code
+class="verbatim">[[链接]]</code>
+来声明链接。如果是图片，那么使用第二种链接格式套入图片的url即可。</p>
+<h1 id="表格">表格</h1>
+<p>最简单的表格长这样：</p>
+<pre class="example"><code>| 1 | 2 | 3 |
+| 4 | 5 | 6 |
+| 7 | 8 | 9 |
+</code></pre>
+<p>效果如下：</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>8</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<p>不用担心你的表格对不齐，按下TAB即可（如果想要切换到下一行同一位置，使用Enter）</p>
+<h1 id="文档信息">文档信息</h1>
+<p>就像headline一节提到的一样，我们可以指定文档的标题，在文档的开头，像这样：</p>
+<pre class="example"><code>#+TITLE: 文档标题
+</code></pre>
+</div>
+	<script src="https://giscus.app/client.js"
+		data-repo="doing1024/doing1024.github.io"
+		data-repo-id="R_kgDOMZDXwQ"
+		data-category="Q&A"
+		data-category-id="DIC_kwDOMZDXwc4Ci8x6"
+		data-mapping="pathname"
+		data-strict="0"
+		data-reactions-enabled="1"
+		data-emit-metadata="0"
+		data-input-position="top"
+		data-theme="light"
+		data-lang="zh-CN"
+		data-loading="lazy"
+		crossorigin="anonymous"
+		async>
+	</script>
+        <script>
+         var lst = document.getElementsByTagName("img");
+         for (var i = 0;i < lst.length;++i) lst[i].setAttribute("data-zoomable","");
+         document.addEventListener('DOMContentLoaded', function () {
+             mediumZoom('[data-zoomable]');
+         });
+        </script>
+    </body>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://unpkg.com/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script>
+</html>
