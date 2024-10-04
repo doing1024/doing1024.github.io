@@ -33,9 +33,6 @@ class Dlog:
             pass
 
     def __build(self, file, config, theme):
-        if file in config["noBuildFiles"]:
-            shutil.copytree(f"posts/{file}", f"./build/{file}")
-            return
         postbody = pypandoc.convert_file(f"posts/{file}", "html")
         with open(f"build/{file.split('.')[0]}.html", "w") as output, open(f"themes/{theme}/template/post.html", "r") as tmplt:
             s = tmplt.read().replace("{{{postBody}}}", postbody).replace(
@@ -55,6 +52,10 @@ class Dlog:
             for file3 in file2:
                 file = os.path.join(file1,file3)
                 file  = re.sub(".*posts/","",file)
+                for nobuildfile in config["noBuildFiles"]:
+                    if file.startswith(nobuildfile):
+                        shutil.copytree(f"posts/{file}", f"./build/{file}")
+                        continue
                 threading.Thread(target=self.__build, args=(
                     file, config, theme)).start()
 
