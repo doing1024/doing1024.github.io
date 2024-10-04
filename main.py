@@ -48,13 +48,17 @@ class Dlog:
         shutil.rmtree("build")
         os.mkdir("build")
         theme = config["theme"]
+        for nobuildfile in config["noBuildFiles"]:
+            try:
+                shutil.copytree(f"posts/{nobuildfile}", f"./build/{nobuildfile}")
+            except:
+                pass
         for file1,_,file2 in os.walk("posts"):
             for file3 in file2:
                 file = os.path.join(file1,file3)
                 file  = re.sub(".*posts/","",file)
                 for nobuildfile in config["noBuildFiles"]:
                     if file.startswith(nobuildfile):
-                        shutil.copytree(f"posts/{file}", f"./build/{file}")
                         continue
                 threading.Thread(target=self.__build, args=(
                     file, config, theme)).start()
