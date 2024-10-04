@@ -7,7 +7,6 @@ import fire
 import toml
 import threading
 
-
 class Dlog:
     "dlog主逻辑类"
 
