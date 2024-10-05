@@ -30,7 +30,8 @@ class Dlog:
         os.mkdir("themes")
         with open("config.toml", "w"):
             pass
-
+        print("If you want to get a example theme,please go to ")
+        
     def __build(self, file, config, theme):
         postbody = pypandoc.convert_file(f"posts/{file}", "html")
         try:
