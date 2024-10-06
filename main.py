@@ -40,7 +40,10 @@ class Dlog:
     def build(self):
         """实现dlog build命令"""
         config = self.__readconfig()  # 读取配置
-        shutil.rmtree("build")  # 删除上次生成的文件
+        try:
+            shutil.rmtree("build")  # 删除上次生成的文件
+        except:
+            pass
         os.mkdir("build")  # 新建文件夹
         theme = config["theme"]  # 读取主题
         for nobuildfile in config["noBuildFiles"]:  # 拷贝无需转化的文件
