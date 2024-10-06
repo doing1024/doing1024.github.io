@@ -1,82 +1,75 @@
-import sys
-import os
-import re
-import shutil
-import pypandoc
-import fire
-import toml
-import threading
+import os  # 操作文件
+import threading  # 多线程
+import re  # 正则表达式
+import shutil  # 操作文件plus
+import pypandoc  # pandoc的python封装
+import toml  # 读取配置文件
+
 
 class Dlog:
     "dlog主逻辑类"
 
-    def __init__(self):
-        pass
-
+    # 读取config.toml文件
     def __readconfig(self):
         return toml.load("config.toml")
 
-    def __confirm(self, message, yes='y', no='n'):
-        want_to_do = input(f"{message} [{yes}/{no}]:")
-        while want_to_do not in (yes, no):
-            want_to_do = input(f"please answer {yes} or {no}:")
-        return bool(want_to_do == yes)
-
-    def __newsite(self):
-        if not self.__confirm(f"Do you want to create a new site at {os.getcwd()}?"):
-            print("Abort!")
-            sys.exit(1)
-        os.mkdir("posts")
-        os.mkdir("themes")
-        with open("config.toml", "w"):
-            pass
-        print("If you want to get a example theme,please go to ")
-        
-    def __build(self, file, config, theme):
+    # build一个文件
+    def __build(
+        self, file, config, theme
+    ):  # file为要部署的文件，config为配置读取的字典，theme为配置中的主题
         postbody = pypandoc.convert_file(f"posts/{file}", "html")
-        try:
-            os.makedirs(os.path.dirname(os.path.join("build",file)))
-        except:
+        try:  # 尝试新建文件
+            os.makedirs(os.path.dirname(os.path.join("build", file)))
+        except:  # 如果文件存在，则不新建
             pass
-        with open(f"build/{file.split('.')[0]}.html", "w") as output, open(f"themes/{theme}/template/post.html", "r") as tmplt:
-            s = tmplt.read().replace("{{{postBody}}}", postbody).replace(
-                "file:///", config["siteUrl"])
-            words = list(set(re.compile(r"\{\{\{.*\}\}\}").findall(s)))
+        with open(f"build/{file.split('.')[0]}.html", "w") as output, open(
+            f"themes/{theme}/template/post.html", "r"
+        ) as tmplt:  # 写入目标文件，读取主题文件
+            s = (
+                tmplt.read()
+                .replace("{{{postBody}}}", postbody)  # 替换文章内容
+                .replace("file:///", config["siteUrl"])  # 替换Linux的特别情况
+            )
+            words = list(
+                set(re.compile(r"\{\{\{.*\}\}\}").findall(s))
+            )  # 查找需要在配置文件寻找的值
             for word in words:
-                s = s.replace(word, config[word[3:-3]])
-            output.write(s)
+                s = s.replace(word, config[word[3:-3]])  # 逐一替换
+            output.write(s)  # 写入
 
     def build(self):
         """实现dlog build命令"""
-        config = self.__readconfig()
-        shutil.rmtree("build")
-        os.mkdir("build")
-        theme = config["theme"]
-        for nobuildfile in config["noBuildFiles"]:
-            try:
+        config = self.__readconfig()  # 读取配置
+        shutil.rmtree("build")  # 删除上次生成的文件
+        os.mkdir("build")  # 新建文件夹
+        theme = config["theme"]  # 读取主题
+        for nobuildfile in config["noBuildFiles"]:  # 拷贝无需转化的文件
+            try:  # 文件夹
                 shutil.copytree(f"posts/{nobuildfile}", f"./build/{nobuildfile}")
-            except:
-                pass
-        for file in os.listdir(f"themes/{theme}/template/"):
-            shutil.copy(os.path.join(f"themes/{theme}/template/",file),"build/")
-        for file1,_,file2 in os.walk("posts"):
+            except:  # 文件
+                shutil.copy(f"posts/{nobuildfile}", f"build/{nobuildfile}")
+        for file in os.listdir(f"themes/{theme}/template/"):  # 将主题文件逐一拷贝
+            try:  # 文件夹
+                shutil.copytree(
+                    os.path.join(f"themes/{theme}/template/", file), "build/"
+                )
+            except:  # 文件
+                shutil.copy(os.path.join(f"themes/{theme}/template/", file), "build/")
+        for file1, _, file2 in os.walk("posts"):  # 遍历文章
             for file3 in file2:
-                file = os.path.join(file1,file3)
-                file  = re.sub(".*posts/","",file)
+                file = os.path.join(file1, file3)
+                file = re.sub(".*posts/", "", file)
                 flag = False
                 for nobuildfile in config["noBuildFiles"]:
                     if file.startswith(nobuildfile):
                         flag = True
                         break
                 if not flag:
-                    threading.Thread(target=self.__build, args=(
-                        file, config, theme)).start()
-
-    def new(self, typ):
-        """实现dlog new"""
-        if typ == "site":
-            self.__newsite()
+                    threading.Thread(
+                        target=self.__build, args=(file, config, theme)
+                    ).start()
 
 
 if __name__ == "__main__":
-    fire.Fire(Dlog)
+    dlog = Dlog()
+    dlog.build()

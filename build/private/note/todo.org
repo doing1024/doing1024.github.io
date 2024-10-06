@@ -1,2 +1,0 @@
-* INBOX
-** TODO emacs入门指路灯
