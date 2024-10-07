@@ -19,7 +19,7 @@ Emacs和Vim是编程世界的两大“活化石”。但是尽管古老，还仍
 
 此时你也许还没有经验去网上东拼西凑的去“捏”自己的配置，可以去阅读[[https://pavinberg.github.io/emacs-book/zh/]][fn:1]，这时你可以尝试去跳过一些对自己没有用的插件/配置啦！
 
-最后就可以去大千 ~世界~ 网络去东拼西凑了！
+最后就可以去大千 +世界+ 网络去东拼西凑了！
 
 
 [fn:1] 此教程推荐的lsp-mode比较卡，如果需要可以在配置完后转到[[https://github.com/manateelazycat/lsp-bridge][Lsp-Bridge]]。不要畏惧Github,你需要慢慢去适应。
