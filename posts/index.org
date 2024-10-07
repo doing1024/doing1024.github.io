@@ -8,3 +8,4 @@
 + [[/tools/whylinux.html][为什么我要使用Linux]]
 + [[/other/problem.html][小升初奥数题]]
 + [[/tools/orgmode.html][orgmode入门]]
++ [[/tools/emacs.html][学习Emacs的一点经验]]
