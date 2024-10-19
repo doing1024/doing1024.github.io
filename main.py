@@ -42,7 +42,7 @@ class Dlog:
                     .replace("{{{postBody}}}", postbody)
                     .replace("file:///", config["siteUrl"])
                 )
-                words = list(set(re.compile(r"\{\{\{.*\}\}\}").findall(s)))
+                words = list(set(re.compile(r"\{\{.*\}\}").findall(s)))
                 for word in words:
                     s = s.replace(word, config[word[3:-3]])
                 output.write(s)
