@@ -321,11 +321,11 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb5-1"><a href="
 <p>紧接着我们要把编辑栏设为在左侧占一半的空间，以便给后边的预览窗口留空间，将以下代码写入<code>style.css</code>:</p>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode css"><code class="sourceCode css"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.CodeMirror</span>{</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">top</span>: <span class="dv">0</span><span class="dt">vh</span><span class="op">;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">left</span>: <span class="dv">0</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">position</span>: <span class="dv">fixed</span><span class="op">;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">width</span>: <span class="dv">50</span><span class="dt">vw</span><span class="op">;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span>: <span class="dv">100</span><span class="dt">vh</span><span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">top</span><span class="ch">:</span> <span class="dv">0</span><span class="dt">vh</span><span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">left</span><span class="ch">:</span> <span class="dv">0</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">position</span><span class="ch">:</span> <span class="dv">fixed</span><span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">width</span><span class="ch">:</span> <span class="dv">50</span><span class="dt">vw</span><span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span><span class="ch">:</span> <span class="dv">100</span><span class="dt">vh</span><span class="op">;</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>最后我们要在<code>index.html</code>中引入<code>style.css</code>，将其写入<code>&lt;head&gt;</code>与<code>&lt;/head&gt;</code>之间:</p>
 <div class="sourceCode" id="cb7"><pre
@@ -374,15 +374,15 @@ class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11
 <p>最后写css：</p>
 <div class="sourceCode" id="cb12"><pre
 class="sourceCode css"><code class="sourceCode css"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#show</span>{</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">width</span>: <span class="dv">50</span><span class="dt">vw</span><span class="op">;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span>: <span class="dv">100</span><span class="dt">vh</span><span class="op">;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">position</span>: <span class="dv">fixed</span><span class="op">;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">top</span>: <span class="dv">0</span><span class="dt">vh</span><span class="op">;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">right</span>: <span class="dv">0</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">overflow</span>:<span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">width</span><span class="ch">:</span> <span class="dv">50</span><span class="dt">vw</span><span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span><span class="ch">:</span> <span class="dv">100</span><span class="dt">vh</span><span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">position</span><span class="ch">:</span> <span class="dv">fixed</span><span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">top</span><span class="ch">:</span> <span class="dv">0</span><span class="dt">vh</span><span class="op">;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">right</span><span class="ch">:</span> <span class="dv">0</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">overflow</span><span class="ch">:</span><span class="bu">auto</span><span class="op">;</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">.katex-html</span>{</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">display</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">display</span><span class="ch">:</span> <span class="dv">none</span><span class="op">;</span></span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>现在你就可以达到文章开头时的效果图啦！自己运行试试吧！</p>
 </div>
