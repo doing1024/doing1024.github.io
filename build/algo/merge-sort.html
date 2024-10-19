@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8">
+        <title>doing的小破屋</title>
+        <style>
+	 table,table tr th, table tr td { border:1px solid #0094ff; }
+         img {
+             width: 90vw;
+             z-index: 1000;
+         }
+         .pstbdy{
+             width: 100vw;
+             flex: auto;
+	     border: 20px;
+	     box-sizing: border-box;
+         }
+         body{
+             display: flex;
+             flex-direction: column;
+         }
+         @media screen and (max-width: 750px){
+             body{
+		 font-size: 5vw !important;
+             }
+         }
+	 /* Sspai Web Theme A theme to [sspai](ssp.ai) default theme. Developed by Codegass(wchweichenhao@gmial.com) & Yves(yves@sspai.com) Download Cuto on the App Store and Google Play! */
+	 body {
+	     font-size: 15px;
+	     color:#333;
+	     background:#fff;
+	     font-family: Helvetica, Arial, "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", "tohoma,sans-serif";
+	     margin: 0;
+	 }
+	 h1 {
+	     font-size: 2.2em;
+	     font-weight: 700;
+	     line-height: 1.1;
+	     padding-top: 16px;
+	     margin-bottom: 4px;
+	 }
+	 h2, h3, h4, h5, h6 {
+	     line-height: 1.5em;
+	     margin-top: 2.2em;
+	     margin-bottom: 4px;
+	 }
+	 h2 {
+	     font-size: 1.4em;
+	     margin: 40px 10px 20px 0;
+	     padding-left: 9px;
+	     border-left: 6px solid #ff7e79;
+	     font-weight: 700;
+	     line-height: 1.4;
+	 }
+	 h3 {
+	     font-weight: 700;
+	     font-size: 1.2em;
+	     line-height: 1.4;
+	     margin: 10px 0 5px;
+	     padding-top: 10px;
+	 }
+	 h4 {
+	     font-weight: 700;
+	     text-transform: uppercase;
+	     font-size: 1.1em;
+	     line-height: 1.4;
+	     margin: 10px 0 5px;
+	     padding-top: 10px
+	 }
+	 h5, h6 {
+	     font-size: .9em;
+	 }
+	 h5 {
+	     font-weight: bold;
+	     text-transform: uppercase;
+	 }
+	 h6 {
+	     font-weight: normal;
+	     color: #AAA;
+	 }
+	 img {
+	     width: 100%;
+	     border-radius: 5px;
+	     display: block;
+	     margin-bottom: 15px;
+	     height: auto;
+	 }
+	 dl,ol,ul {
+	     margin-top: 12px;
+	     margin-bottom: 20px;
+	     padding-left: 5%;
+	     line-height: 1.8;
+	 }
+	 p {
+	     margin: 0 0 20px;
+	     padding: 0;
+	     line-height: 1.8;
+	 }
+	 a {
+	     text-decoration: none;
+	     color: black;
+	     border-bottom: 1px solid #d71a1b;
+	 }
+	 a:focus {
+	     outline-offset: -2px;
+	 }
+	 blockquote {
+	     font-size: 1em;
+	     font-style: normal;
+	     padding: 30px 38px;
+	     margin: 0 0 15px;
+	     position: relative;
+	     line-height: 1.8;
+	     text-indent: 0;
+	     border: none;
+	     color: #888;
+	 }
+	 blockquote:before {
+	     content: "“";
+	     left: 12px;
+	     top: 0;
+	     color: #E0E0E0;
+	     font-size: 4em;
+	     font-family: Arial, serif;
+	     line-height: 1em;
+	     font-weight: 700;
+	     position: absolute;
+	 }
+	 blockquote:after {
+	     content: "”";
+	     right: 12px;
+	     bottom: -26px;
+	     color: #E0E0E0;
+	     font-size: 4em;
+	     font-family: Arial, serif;
+	     line-height: 1em;
+	     font-weight: 700;
+	     position: absolute;
+	     bottom: -31px;
+	 }
+	 strong, dfn {
+	     font-weight: 700;
+	 }
+	 em, dfn {
+	     font-style: italic;
+	     font-weight: 400;
+	 }
+	 del {
+	     text-decoration: line-through;
+	 }
+	 /*code {font-size:90%;}*/
+	 /*pre {text-align:left; overflow-x: scroll; color: #257fa0; background: #f6f6f6; padding: 10pt 15pt; border-radius: 3px; border: solid 1px #e2e2e2;}*/
+	 pre {
+	     margin: 0 0 10px;
+	     font-size: 13px;
+	     line-height: 1.42857;
+	     word-break: break-all;
+	     word-wrap: break-word;
+	     border-radius: 4px;
+	     white-space: pre-wrap;
+	     display: block;
+	     background: #f8f8f8;
+	     padding: 10px 20px;
+	     border: none;
+	     margin-bottom: 25px;
+	     color: #666;
+	     font-family: Courier, sans-serif;
+	 }
+	 code {
+	     color: #c7254e;
+	     background-color: #f9f2f4;
+	     border-radius: 4px;
+	     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+	     padding: 2px 4px;
+	     font-size: 90%;
+	 }
+	 p > code {
+	     color: #c7264e;
+	     background-color: #f9f2f4;
+	     font-size: .95em;
+	     border-radius: 3px;
+	     -moz-border-radius: 3px;
+	     -webkit-border-radius: 3px;
+	 }
+	 figure {
+	     margin: 1em 0;
+	 }
+	 figcaption {
+	     font-size: 0.75em;
+	     padding:0.5em 2em;
+	     margin-bottom: 2em;
+	 }
+	 figure img {
+	     margin-bottom: 0px;
+	 }
+	 hr {
+	     margin-top: 20px;
+	     margin-bottom: 20px;
+	     border: 0;
+	     border-top: 1px solid #eee;
+	 }
+	 ol p, ul p {
+	     margin-bottom: 0px;
+	 }
+	 li {
+	     margin-bottom: 0.75em;
+	     margin-top: 0.75em;
+	 }
+	 ol#footnotes {
+	     font-size: 0.95em;
+	     padding-top: 1em;
+	     margin-top: 1em;
+	     margin-left: 0;
+	     border-top: 1px solid #eaeaea;
+	     counter-reset: footer-counter;
+	     list-style: none;
+	     color: #555;
+	     padding-left: 5%;
+	     margin: 20px 0;
+	 }
+	 ol#footnotes li {
+	     margin-bottom: 10px;
+	     margin-left: 16px;
+	     font-weight: 400;
+	     line-height: 2;
+	     list-style-type: none;
+	 }
+	 ol#footnotes li:before {
+	     content: counter(footer-counter) ". ";
+	     counter-increment: footer-counter;
+	     font-weight: 800;
+	     font-size: .95em;
+	 }
+	 @keyframes highfade {
+	     0% {background-color: none;}
+	     20% {background-color: yellow;}
+	     100% {background-color: none;}
+	 }
+	 @-webkit-keyframes highfade {
+	     0% {background-color: none;} 
+	     20% {background-color: yellow;}
+	     100% {background-color: none;}
+	 }
+	 a:target, ol#footnotes li:target, sup a:target {
+	     animation-name: highfade;
+	     animation-duration: 2s;
+	     animation-iteration-count: 1;
+	     animation-timing-function: ease-in-out;
+	     -webkit-animation-name: highfade;
+	     -webkit-animation-duration: 2s;
+	     -webkit-animation-iteration-count: 1;
+	     -webkit-animation-timing-function: ease-in-out;
+	 }
+	 a:target {
+	     border:0;
+	     outline: 0;
+	     animation-iteration-count: 1;
+	     -webkit-animation-timing-function: ease-in-out;
+	 }
+	 a:target {
+	     border:0;
+	     outline: 0;
+	     tion-iteration-count: 1;
+	     -webkit-animation-timing-function: ease-in-out;
+	 }
+	 a:target {
+	     border:0;outline: 0;
+	 }
+	</style>
+	<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/atom-one-dark.min.css">
+    </head>
+    <body>
+        <div style="z-index:999;flex-shrink: 0;"><a href="https://doing1024.us.kg/" style="text-decoration: none;color: black;display:flex;flex-direction: row;flex-warp: nowarp;justify-content: flex-start;">
+            <h1>doing的小破屋</h1></a></div>
+        <div class="pstbdy"><h1 id="归并排序简介">归并排序简介</h1>
+<h2 id="什么是排序算法">什么是排序算法</h2>
+<p>排序算法是算法的基石，许多算法都基于排序算法，比如二分搜索、离散化等。这篇文章将要详细介绍将要介绍排序算法之一——归并排序。</p>
+<h2 id="归并排序的性能">归并排序的性能</h2>
+<p>归并排序的时间复杂度稳定在 <span
+class="math inline">𝒪(<em>n</em>log(<em>n</em>))</span>
+，是一种具有稳定性（即相同元素相对位置不变）的排序方法。所以一般来说归并排序优于快速排序。归并排序基于一种叫做“分治”的思想，即分而治之。</p>
+<h1 id="归并排序原理">归并排序原理</h1>
+<p>下面我们用<code>1 9 2 7 6 5 8 4</code>这8个数来演示归并排序。</p>
+<p>归并排序主要分为两部分，一部分是分，一部分是合。</p>
+<h2 id="步骤一分解">步骤一：分解</h2>
+<p><img src="https://s21.ax1x.com/2024/07/29/pkLkTEj.png" /></p>
+<p>对于每个序列，取<code>mid=(l+r)/2</code>（向下取整），
+然后分别对左（<code>[l~mid]</code>）右（<code>[mid+1~r]</code>）两段进行排序。
+等等！如果 <span
+class="math inline"><em>l</em> = <em>r</em></span>，即只有一个数了，那么这段就不用排了，
+直接<code>return</code>。</p>
+<h2 id="步骤二合并">步骤二：合并</h2>
+<p>这个步骤，我们需要将两个子序列进行合并。注意，被合并的两个子序列一定是有序的。这样才可以进行线性的合并。</p>
+<p>我们定义两个“箭头”<code>i</code>和<code>j</code>分别指向两个子序列的开头，并且定义一个“储物间”数组<code>t</code>，用来存储排好的数字，就像这样：</p>
+<p><a href="https://imgse.com/i/pkLNwB4"><img
+src="https://s21.ax1x.com/2024/07/29/pkLNwB4.png"
+alt="pkLNwB4.png" /></a></p>
+<p>然后我们比较两个箭头指向的数字，看哪个小，就让哪个进入“储物间”，并且把那个箭头向前推进。
+比如上面这幅图， <span class="math inline">1 &lt; 4</span>
+，所以就变成这样：</p>
+<p><a href="https://imgse.com/i/pkLN69x"><img
+src="https://s21.ax1x.com/2024/07/29/pkLN69x.png"
+alt="pkLN69x.png" /></a></p>
+<p>接下来， <span class="math inline">2 &lt; 4</span>
+，所以让i指向的数进入储物间并向前推进。</p>
+<p><a href="https://imgse.com/i/pkLNggK"><img
+src="https://s21.ax1x.com/2024/07/29/pkLNggK.png"
+alt="pkLNggK.png" /></a></p>
+<p>接下来继续，注意！ <span class="math inline">7 &gt; 4</span>
+，所以要让4进入储物间，推进的则是<code>j</code>。</p>
+<p><a href="https://imgse.com/i/pkLNfDe"><img
+src="https://s21.ax1x.com/2024/07/29/pkLNfDe.png"
+alt="pkLNfDe.png" /></a></p>
+<p>以此类推，请你手动模拟一下后面的部分，如果没有错，模拟完应该是这样的：</p>
+<p><a href="https://imgse.com/i/pkLNIUA"><img
+src="https://s21.ax1x.com/2024/07/29/pkLNIUA.png"
+alt="pkLNIUA.png" /></a></p>
+<p>怎么样？自己模拟的对不对？注意如果一个箭头走到了末尾，另一个箭头还要继续走完哦！如果还是不理解可以看一下代码</p>
+<h2 id="代码实现">代码实现</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// a是原序列，t是储物间。</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">100</span><span class="op">],</span>t<span class="op">[</span><span class="dv">100</span><span class="op">];</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mergesort<span class="op">(</span><span class="dt">int</span> l<span class="op">,</span><span class="dt">int</span> r<span class="op">){</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>l <span class="op">==</span> r<span class="op">)</span> <span class="cf">return</span><span class="op">;</span> <span class="co">// 如果只有一个数就不用排了</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> mid <span class="op">=</span> <span class="op">(</span>l <span class="op">+</span> r<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span> <span class="co">// 取中间点</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    mergesort<span class="op">(</span>l<span class="op">,</span>mid<span class="op">);</span> <span class="co">// 排序左半部分</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    mergesort<span class="op">(</span>mid <span class="op">+</span> <span class="dv">1</span><span class="op">,</span>r<span class="op">);</span> <span class="co">// 排序右半部分</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> tot <span class="op">=</span> <span class="dv">0</span><span class="op">,</span>i <span class="op">=</span> l<span class="op">,</span>j <span class="op">=</span> mid <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// 开始合并，tot表示储物间最后一个被占用的位置</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>i <span class="op">&lt;=</span> mid <span class="op">&amp;&amp;</span> j <span class="op">&lt;=</span> r<span class="op">){</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>a<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;=</span> a<span class="op">[</span>j<span class="op">])</span> t<span class="op">[++</span>tot<span class="op">]</span> <span class="op">=</span> a<span class="op">[</span>i<span class="op">++];</span> <span class="co">// 如果i指向的数小，那么就把它放入储物间</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> t<span class="op">[++</span>tot<span class="op">]</span> <span class="op">=</span> a<span class="op">[</span>j<span class="op">++];</span> <span class="co">// 否则就让j指向的数进入储物间</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>i <span class="op">&lt;=</span> mid<span class="op">)</span> t<span class="op">[++</span>tot<span class="op">]</span> <span class="op">=</span> a<span class="op">[</span>i<span class="op">++];</span> <span class="co">// 把剩下的部分装进储物间</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>j <span class="op">&lt;=</span> r<span class="op">)</span> t<span class="op">[++</span>tot<span class="op">]</span> <span class="op">=</span> a<span class="op">[</span>j<span class="op">++];</span> <span class="co">// 同上</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span>k <span class="op">&lt;=</span> tot<span class="op">;++</span>k<span class="op">)</span> a<span class="op">[</span>l <span class="op">+</span> k <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">=</span> t<span class="op">[</span>k<span class="op">];</span> <span class="co">// 把储物间放回到原序列</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="拓展应用求逆序对个数">拓展应用：求逆序对个数</h1>
+<h2 id="原理">原理</h2>
+<p>逆序对，指数列中的两个数 <span
+class="math inline"><em>a</em><sub><em>i</em></sub> &gt; <em>a</em><sub><em>j</em></sub></span>
+并且 <span class="math inline"><em>i</em> &lt; <em>j</em></span>
+。利用归并排序我们可以以 <span
+class="math inline">𝒪(<em>n</em>log(<em>n</em>))</span>
+的时间复杂度求序列中的逆序对个数。
+归并排序在合并过程中，<code>i</code>永远小于<code>j</code>，这时，如果
+<span
+class="math inline"><em>a</em><sub><em>i</em></sub> &gt; <em>a</em><sub><em>j</em></sub></span>
+，说明出现了一组逆序对，而且因为被合并的两个序列是有序的，所以<span
+class="math inline"><em>a</em><sub><em>i</em></sub></span>
+后面的数也一定大于 <span
+class="math inline"><em>a</em><sub><em>j</em></sub></span>
+，因此<code>ans += mid - i + 1</code>，具体代码如下：</p>
+<h2 id="代码实现-1">代码实现</h2>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// a是原序列，t是储物间。</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a<span class="op">[</span><span class="dv">100</span><span class="op">],</span>t<span class="op">[</span><span class="dv">100</span><span class="op">],</span>ans <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mergesort<span class="op">(</span><span class="dt">int</span> l<span class="op">,</span><span class="dt">int</span> r<span class="op">){</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>l <span class="op">==</span> r<span class="op">)</span> <span class="cf">return</span><span class="op">;</span> <span class="co">// 如果只有一个数就不用排了</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> mid <span class="op">=</span> <span class="op">(</span>l <span class="op">+</span> r<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span> <span class="co">// 取中间点</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    mergesort<span class="op">(</span>l<span class="op">,</span>mid<span class="op">);</span> <span class="co">// 排序左半部分</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    mergesort<span class="op">(</span>mid <span class="op">+</span> <span class="dv">1</span><span class="op">,</span>r<span class="op">);</span> <span class="co">// 排序右半部分</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> tot <span class="op">=</span> <span class="dv">0</span><span class="op">,</span>i <span class="op">=</span> l<span class="op">,</span>j <span class="op">=</span> mid <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// 开始合并，tot表示储物间最后一个被占用的位置</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>i <span class="op">&lt;=</span> mid <span class="op">&amp;&amp;</span> j <span class="op">&lt;=</span> r<span class="op">){</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>a<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;=</span> a<span class="op">[</span>j<span class="op">])</span> t<span class="op">[++</span>tot<span class="op">]</span> <span class="op">=</span> a<span class="op">[</span>i<span class="op">++];</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> t<span class="op">[++</span>tot<span class="op">]</span> <span class="op">=</span> a<span class="op">[</span>j<span class="op">++],</span>ans <span class="op">+=</span> mid <span class="op">-</span> i <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// 如果a[j]更小，那么就是发现了逆序对</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>i <span class="op">&lt;=</span> mid<span class="op">)</span> t<span class="op">[++</span>tot<span class="op">]</span> <span class="op">=</span> a<span class="op">[</span>i<span class="op">++];</span> <span class="co">// 把剩下的部分装进储物间</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>j <span class="op">&lt;=</span> r<span class="op">)</span> t<span class="op">[++</span>tot<span class="op">]</span> <span class="op">=</span> a<span class="op">[</span>j<span class="op">++];</span> <span class="co">// 同上</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span>k <span class="op">&lt;=</span> tot<span class="op">;++</span>k<span class="op">)</span> a<span class="op">[</span>l <span class="op">+</span> k <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">=</span> t<span class="op">[</span>k<span class="op">];</span> <span class="co">// 把储物间放回到原序列</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</div>
+	<script src="https://giscus.app/client.js"
+		data-repo="doing1024/doing1024.github.io"
+		data-repo-id="R_kgDOMZDXwQ"
+		data-category="Q&A"
+		data-category-id="DIC_kwDOMZDXwc4Ci8x6"
+		data-mapping="pathname"
+		data-strict="0"
+		data-reactions-enabled="1"
+		data-emit-metadata="0"
+		data-input-position="top"
+		data-theme="light"
+		data-lang="zh-CN"
+		data-loading="lazy"
+		crossorigin="anonymous"
+		async>
+	</script>
+        <script>
+         var lst = document.getElementsByTagName("img");
+         for (var i = 0;i < lst.length;++i) lst[i].setAttribute("data-zoomable","");
+         document.addEventListener('DOMContentLoaded', function () {
+             mediumZoom('[data-zoomable]');
+         });
+        </script>
+    </body>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://unpkg.com/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script>
+</html>

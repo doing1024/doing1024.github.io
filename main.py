@@ -1,10 +1,10 @@
 import os
 import threading
+import re
 import shutil
 import pypandoc
 import toml
 import logging
-from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
 class Dlog:
@@ -26,7 +26,7 @@ class Dlog:
             self.logger.error(f"Error reading config file: {e}")
             raise
 
-    def __build(self, file, config, theme, env):
+    def __build(self, file, config, theme):
         try:
             postbody = pypandoc.convert_file(os.path.join(self.posts_dir, file), "html")
             output_file = os.path.join(
@@ -34,19 +34,18 @@ class Dlog:
             )
             os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
-            template = env.get_template("post.html")
-
-            context = {
-                "postBody": postbody,
-                "siteUrl": config["siteUrl"],
-                **config,  # 添加所有配置项到上下文
-            }
-
-            rendered_content = template.render(context)
-
-            with open(output_file, "w", encoding="utf-8") as output:
-                output.write(rendered_content)
-
+            with open(output_file, "w") as output, open(
+                os.path.join(self.themes_dir, theme, "template", "post.html"), "r"
+            ) as tmplt:
+                s = (
+                    tmplt.read()
+                    .replace("{{{postBody}}}", postbody)
+                    .replace("file:///", config["siteUrl"])
+                )
+                words = list(set(re.compile(r"\{\{\{.*\}\}\}").findall(s)))
+                for word in words:
+                    s = s.replace(word, config[word[3:-3]])
+                output.write(s)
         except Exception as e:
             self.logger.error(f"Error building file {file}: {e}")
 
@@ -63,14 +62,6 @@ class Dlog:
 
             theme = config["theme"]
 
-            # 设置Jinja2环境
-            env = Environment(
-                loader=FileSystemLoader(
-                    os.path.join(self.themes_dir, theme, "template")
-                ),
-                autoescape=select_autoescape(["html", "xml"]),
-            )
-
             for nobuildfile in config["noBuildFiles"]:
                 src = os.path.join(self.posts_dir, nobuildfile)
                 dst = os.path.join(self.build_dir, nobuildfile)
@@ -85,7 +76,7 @@ class Dlog:
                 dst = os.path.join(self.build_dir, item)
                 if os.path.isdir(src):
                     shutil.copytree(src, dst)
-                elif not item.endswith(".html"):  # 不复制HTML模板文件
+                else:
                     shutil.copy2(src, dst)
 
             threads = []
@@ -99,7 +90,7 @@ class Dlog:
                         for nobuildfile in config["noBuildFiles"]
                     ):
                         thread = threading.Thread(
-                            target=self.__build, args=(file_path, config, theme, env)
+                            target=self.__build, args=(file_path, config, theme)
                         )
                         threads.append(thread)
                         thread.start()
