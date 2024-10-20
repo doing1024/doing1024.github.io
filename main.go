@@ -15,8 +15,10 @@ import (
 )
 
 type Config struct {
-	SiteURL      string   `toml:"siteUrl"`
-	Theme        string   `toml:"theme"`
+	SiteURL   string   `toml:"siteUrl"`
+	SiteName  string   `toml:"siteName"`
+	SiteTitle string   `toml:"siteTitle"`
+	Theme     string   `toml:"theme"`
 	NoBuildFiles []string `toml:"noBuildFiles"`
 }
 
@@ -71,8 +73,8 @@ func (d *Dlog) build() error {
 	}
 
 	themeTemplateDir := filepath.Join(d.themesDir, d.config.Theme, "template")
-	if err := copy.Copy(themeTemplateDir, d.buildDir); err != nil {
-		return fmt.Errorf("error copying theme files: %w", err)
+	if err := d.copyAndReplaceThemeFiles(themeTemplateDir, d.buildDir); err != nil {
+		return fmt.Errorf("error copying and replacing theme files: %w", err)
 	}
 
 	var wg sync.WaitGroup
@@ -109,6 +111,48 @@ func (d *Dlog) build() error {
 	return err
 }
 
+func (d *Dlog) copyAndReplaceThemeFiles(src, dst string) error {
+	return filepath.Walk(src, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		relPath, err := filepath.Rel(src, path)
+		if err != nil {
+			return err
+		}
+
+		dstPath := filepath.Join(dst, relPath)
+
+		if info.IsDir() {
+			return os.MkdirAll(dstPath, info.Mode())
+		}
+
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			return err
+		}
+
+		replacedContent := d.replaceThemeVariables(string(content))
+
+		return ioutil.WriteFile(dstPath, []byte(replacedContent), info.Mode())
+	})
+}
+
+func (d *Dlog) replaceThemeVariables(content string) string {
+	replacements := map[string]string{
+		"{{{siteName}}}":  d.config.SiteName,
+		"{{{siteUrl}}}":   d.config.SiteURL,
+		"{{{siteTitle}}}": d.config.SiteTitle,
+	}
+
+	for old, new := range replacements {
+		content = strings.ReplaceAll(content, old, new)
+	}
+
+	return content
+}
+
 func (d *Dlog) buildFile(file string) error {
 	inputPath := filepath.Join(d.postsDir, file)
 	outputPath := filepath.Join(d.buildDir, strings.TrimSuffix(file, filepath.Ext(file))+".html")
@@ -117,7 +161,7 @@ func (d *Dlog) buildFile(file string) error {
 		return err
 	}
 
-	cmd := exec.Command("pandoc", "-t", "html", inputPath, "-o", outputPath)
+	cmd := exec.Command("pandoc", "-f", "markdown", "-t", "html", inputPath, "-o", outputPath)
 	if err := cmd.Run(); err != nil {
 		return fmt.Errorf("pandoc conversion failed: %w", err)
 	}
@@ -133,8 +177,8 @@ func (d *Dlog) buildFile(file string) error {
 		return err
 	}
 
-	finalContent := strings.Replace(string(template), "{{{postBody}}", string(content), 1)
-	finalContent = strings.Replace(finalContent, "file:///", d.config.SiteURL, -1)
+	finalContent := strings.Replace(string(template), "{{{postBody}}}", string(content), 1)
+	finalContent = d.replaceThemeVariables(finalContent)
 
 	return ioutil.WriteFile(outputPath, []byte(finalContent), 0644)
 }
