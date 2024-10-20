@@ -144,6 +144,7 @@ func (d *Dlog) replaceThemeVariables(content string) string {
 		"{{{siteName}}}":  d.config.SiteName,
 		"{{{siteUrl}}}":   d.config.SiteURL,
 		"{{{siteTitle}}}": d.config.SiteTitle,
+		"file:///": d.config.SiteTitle,
 	}
 
 	for old, new := range replacements {
