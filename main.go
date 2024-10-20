@@ -161,7 +161,7 @@ func (d *Dlog) buildFile(file string) error {
 		return err
 	}
 
-	cmd := exec.Command("pandoc", "-f", "markdown", "-t", "html", inputPath, "-o", outputPath)
+	cmd := exec.Command("pandoc", "-t", "html", inputPath, "-o", outputPath)
 	if err := cmd.Run(); err != nil {
 		return fmt.Errorf("pandoc conversion failed: %w", err)
 	}
