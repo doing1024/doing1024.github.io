@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -15,10 +14,10 @@ import (
 )
 
 type Config struct {
-	SiteURL   string   `toml:"siteUrl"`
-	SiteName  string   `toml:"siteName"`
-	SiteTitle string   `toml:"siteTitle"`
-	Theme     string   `toml:"theme"`
+	SiteURL      string   `toml:"siteUrl"`
+	SiteName     string   `toml:"siteName"`
+	SiteTitle    string   `toml:"siteTitle"`
+	Theme        string   `toml:"theme"`
 	NoBuildFiles []string `toml:"noBuildFiles"`
 }
 
@@ -128,14 +127,14 @@ func (d *Dlog) copyAndReplaceThemeFiles(src, dst string) error {
 			return os.MkdirAll(dstPath, info.Mode())
 		}
 
-		content, err := ioutil.ReadFile(path)
+		content, err := os.ReadFile(path)
 		if err != nil {
 			return err
 		}
 
 		replacedContent := d.replaceThemeVariables(string(content))
 
-		return ioutil.WriteFile(dstPath, []byte(replacedContent), info.Mode())
+		return os.WriteFile(dstPath, []byte(replacedContent), info.Mode())
 	})
 }
 
@@ -144,7 +143,6 @@ func (d *Dlog) replaceThemeVariables(content string) string {
 		"{{{siteName}}}":  d.config.SiteName,
 		"{{{siteUrl}}}":   d.config.SiteURL,
 		"{{{siteTitle}}}": d.config.SiteTitle,
-		"file:///": d.config.SiteTitle,
 	}
 
 	for old, new := range replacements {
@@ -167,21 +165,22 @@ func (d *Dlog) buildFile(file string) error {
 		return fmt.Errorf("pandoc conversion failed: %w", err)
 	}
 
-	content, err := ioutil.ReadFile(outputPath)
+	content, err := os.ReadFile(outputPath)
 	if err != nil {
 		return err
 	}
 
 	templatePath := filepath.Join(d.themesDir, d.config.Theme, "template", "post.html")
-	template, err := ioutil.ReadFile(templatePath)
+	template, err := os.ReadFile(templatePath)
 	if err != nil {
 		return err
 	}
 
 	finalContent := strings.Replace(string(template), "{{{postBody}}}", string(content), 1)
 	finalContent = d.replaceThemeVariables(finalContent)
+	finalContent = strings.Replace(finalContent, "file:///", d.config.SiteURL, -1)
 
-	return ioutil.WriteFile(outputPath, []byte(finalContent), 0644)
+	return os.WriteFile(outputPath, []byte(finalContent), 0644)
 }
 
 func main() {
